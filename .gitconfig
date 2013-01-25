@@ -1,0 +1,17 @@
+[user]
+    name = Jie Xu
+    email = jie.xu@atmel.com
+[http]
+    proxy = squid.norway.atmel.com:3128
+    # Workaround for bug when using SSL and HTTP proxy (LP #940431)
+[url "http://"]
+    insteadOf = "https://"
+[alias]
+    rb = rebase
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p

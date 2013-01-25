@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home/jie.xu/projects/T0282-Simulator_For_AVRStudioONE/Source/trunk/verilator'
+let g:netrw_dirhist_2='/home/jie.xu/workspace/verilator_edit'
+let g:netrw_dirhist_3='/home/jie.xu/projects/T0282-Simulator_For_AVRStudioONE/Source/trunk/carbon'
+let g:netrw_dirhist_4='/home/jie.xu/projects/T0282-Simulator_For_AVRStudioONE/Source/trunk/carbon/megaP/patch'
+let g:netrw_dirhist_5='/home/jie.xu/projects/T0282-Simulator_For_AVRStudioONE/Source/trunk/carbon/xmegaA4/substitute'
+let g:netrw_dirhist_6='/home/jie.xu/projects/T0282-Simulator_For_AVRStudioONE/Source/trunk/verilator/megaA/patch'
+let g:netrw_dirhist_7='/home/jie.xu/projects/Studio/source/com.atmel.hil.core'
+let g:netrw_dirhist_8='/home/jie.xu/projects/T0282-Simulator_For_AVRStudioONE/Source/trunk/verilator'
+let g:netrw_dirhist_9='/home/jie.xu/projects/T0282-Simulator_For_AVRStudioONE/Source/trunk/vtoc/mega48P'
