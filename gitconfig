@@ -1,0 +1,30 @@
+[user]
+    name = Jie Xu
+    email = jie.xu@atmel.com
+[http]
+    proxy = squid.norway.atmel.com:3128
+    # Workaround for bug when using SSL and HTTP proxy (LP #940431)
+[url "http://"]
+    insteadOf = "https://"
+[alias]
+    rb = rebase
+    co = checkout
+    ci = commit
+    st = status
+    br = branch --color
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+	#lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+    lg = log --stat
+[core]
+	pager = less -R
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+    
+[log]
+	decorate = full
+[color]
+	ui = true
