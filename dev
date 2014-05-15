@@ -1,0 +1,26 @@
+#!/bin/sh
+# First
+cd ~
+tmux start-server
+tmux new-session -d -s simulator -n simulator
+
+tmux new-window -tsimulator:1 -n hadir -c ~/projects/gitSimulator/templateDevices/mxt874u
+tmux set-window-option -tsimulator:1 window-status-current-format hadir
+
+tmux new-window -tsimulator:2 -n darwin -c  ~/projects/gitSimulator/templateDevices/saml21
+tmux set-window-option -tsimulator:2 window-status-current-format darwin
+
+tmux new-window -tsimulator:3 -n template -c  ~/projects/gitSimulator/template
+tmux set-window-option -tsimulator:3 window-status-current-format template
+
+tmux new-window -tsimulator:4 -n verilator -c ~
+tmux set-window-option -tsimulator:4 window-status-current-format verilator
+
+tmux new-window -tsimulator:5 -n misc -c ~
+tmux set-window-option -tsimulator:5 window-status-current-format misc
+
+
+tmux select-window -tsimulator:1
+tmux kill-window -tsimulator:0
+tmux attach-session -d -tsimulator
+

@@ -1,0 +1,19 @@
+#!/bin/sh
+# First
+cd ~
+tmux start-server
+tmux new-session -d -s rtl -n rtl
+
+tmux new-window -trtl:1 -n hadir -c /tools/simulator/maxTouch/hadir_U3108
+tmux set-window-option -trtl:1 window-status-current-format hadir
+
+tmux new-window -trtl:2 -n darwin -c /tools/simulator/arm/darwin_U3005_trunk/
+tmux set-window-option -trtl:2 window-status-current-format darwin
+
+tmux new-window -trtl:3 -n misc -c ~
+tmux set-window-option -trtl:3 window-status-current-format misc
+
+tmux select-window -trtl:1
+tmux kill-window -trtl:0
+tmux attach-session -d -trtl
+
