@@ -8,7 +8,6 @@ set nocompatible
 set history=700
 
 "Enable filetype plugin
-set nocp
 filetype plugin on
 filetype indent on
 
@@ -32,12 +31,6 @@ let g:mapleader = ","
 "nmap <leader>w :w!<cr>
 nmap <leader>f :find<cr>
 
-map <leader>s :source ~/vim_local/vimrc<cr>
-"Fast editing of .vimrc
-map <leader>e :e! ~/vim_local/vimrc<cr>
-"When .vimrc is edited, reload it
-autocmd! bufwritepost vimrc source ~/vim_local/vimrc
-
 map <leader>t :FuzzyFinderTextMate<CR>
 let g:fuzzy_ignore = "*.rgs,*.def,*.dsp,*.rc,*.exe,*.tlb,*.tli,*.obj,*.vcproj,*.vspscc,*.user,*.dll,*.MANIFEST,*.manifest,*.exp,*.ilk,*.ilb,*.pcc,*.pch,*.pdb,*.tlh,*.dep,*.trg,*.idb,*.nlb,*.NLB,*.DPbcd,*.DPRul,*.DPSup,*.res,*.hex,*.elf,*.bin,*.sbr,*.aps,*.bsc,*.lib}"
 
@@ -46,8 +39,10 @@ map <leader>b :BufExplorer<CR>
 map <leader>x :qa!<CR>
 
 "Fast start tags list
-map <F8> :TlistToggle<cr>
+map <F8> :TagbarToggle<cr>
 map <F9> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -h ".h" --exclude=avr32iss --exclude=avr32synt --exclude=Utilities --exclude=vtoc --exclude=*.v --exclude=*.asm --exclude=*.py .<CR><cr>
+set tags=tags;/
+let Tlist_Ctags_Cmd='/usr/bin/ctags'
 
 "Switch among splited windows
 map <C-h> :wincmd h <cr> 
@@ -55,25 +50,17 @@ map <C-l> :wincmd l <cr>
 map <C-k> :wincmd k <cr>
 map <C-j> :wincmd j <cr>
 
-"nnoremap <silent> <F8> :TlistToggle<CR>
-let Tlist_Exit_OnlyWindow = 1     " exit if taglist is last window open
-let Tlist_Show_One_File = 1       " Only show tags for current buffer
-let Tlist_Enable_Fold_Column = 0  " no fold column (only showing one file)
-let tlist_sql_settings = 'sql;P:package;t:table'
-let tlist_ant_settings = 'ant;p:Project;r:Property;t:Target'
-let Tlist_Use_Right_Window = 1
-let Tlist_Sort_Type='name'
-
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-"let g:miniBufExplMapCTabSwitchBufs = 1
-"map <C-n> :bn<cr>
-"map <C-p> :bp<cr>
-let g:miniBufExplModSelTarget = 1
+"vim-go settings
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
 
 " toggle nerd tree plugin
 nnoremap <silent> <F7> :NERDTreeToggle<CR>
 let g:NERDTreeMinimalUI = 1
+let g:NERDTreeDirArrows=0
 
 "Recognize .V files as verilog
 autocmd! BufNewFile,BufRead *.V set filetype=verilog
@@ -101,11 +88,11 @@ endif
 colorscheme desert
 
 "Highlight current
-if has("gui_running")
+"if has("gui_running")
   set cursorline
   hi cursorline guibg=#eeeeee 
   hi CursorColumn guibg=#eeeeee
-endif
+"endif
 
 "Omni menu colors
 hi Pmenu guibg=#eeeeee
@@ -178,24 +165,43 @@ set showcmd
 """""""""""
 set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<
 "set list
-set tabstop=4
+set tabstop=8
 set shiftwidth=4
 set expandtab
 set formatoptions-=cro
 
 :map <F2> ^o/* ---- EXCLUDED by Jie Xu at: <Esc>:read !date<CR>kJA  ----<Esc>
 :map <F3> ^o   ---- EXCLUDED by Jie Xu at: <Esc>:read !date<CR>kJA  ---- */<Esc>
-:map <F4> ^o///@@@ Shall be moved to device family folder<Esc>
 
 ab #b /************************************************
 ab #e ************************************************/
 ab #v `ifndef verilator
 ab #r `endif //verilator
 
-
+ab ### # ---------------------------------------------------------------------------
+ab /// // --------------------------------------------------------------------------
 """"""""""""""""
 nnoremap <F5> :set invpaste paste?<CR>
 set pastetoggle=<F5>
 set showmode
-"
 
+nmap <F10> :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.hpp' > cscope.files ;
+  \:!cscope -b -i cscope.files -f cscope.out<CR>
+  \:cs kill -1<CR>:cs add cscope.out<CR>
+
+
+" plug setting
+call plug#begin('~/.vim/plugged')
+
+Plug 'fatih/vim-go'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/syntastic'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'majutsushi/tagbar'
+Plug 'kien/ctrlp.vim'
+Plug 'Shougo/vimshell.vim'
+Plug 'scrooloose/syntastic'
+Plug 'Shougo/unite.vim'
+Plug 'bling/vim-airline'
+Plug 'scrooloose/nerdtree'
+call plug#end()
