@@ -110,7 +110,7 @@ set ruler
 set cmdheight=2
 
 "Show line number
-"set nu
+set nu
 set ruler
 
 "Do not redraw, when running macros.. lazyredraw
