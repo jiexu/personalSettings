@@ -230,4 +230,6 @@ Plug 'tpope/vim-surround'
 Plug 'fholgado/minibufexpl.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-commentary'
+Plug 'jiexu/Vim-Jinja2-Syntax'
+Plug 'vim-scripts/SyntaxRange'
 call plug#end()
