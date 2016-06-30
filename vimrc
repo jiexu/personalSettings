@@ -41,6 +41,7 @@ map <leader>x :qa!<CR>
 "Fast start tags list
 map <F8> :TagbarToggle<cr>
 map <F9> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q -h ".h" --exclude=avr32iss --exclude=avr32synt --exclude=Utilities --exclude=vtoc --exclude=*.v --exclude=*.asm --exclude=*.py .<CR><cr>
+map <F10> :%!python -m json.tool
 set tags=tags;/
 let Tlist_Ctags_Cmd='/usr/bin/ctags'
 
@@ -190,18 +191,96 @@ nmap <F10> :!find . -iname '*.c' -o -iname '*.cpp' -o -iname '*.h' -o -iname '*.
   \:cs kill -1<CR>:cs add cscope.out<CR>
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" beginning of easymotion settings
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Bi-directional find motion
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+nmap s <Plug>(easymotion-sn)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-s2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+" end of easymotion settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" beginning of tagbar settings
+" go tagbar
+let g:tagbar_type_go = {
+	\ 'ctagstype' : 'go',
+	\ 'kinds'     : [
+		\ 'p:package',
+		\ 'i:imports:1',
+		\ 'c:constants',
+		\ 'v:variables',
+		\ 't:types',
+		\ 'n:interfaces',
+		\ 'w:fields',
+		\ 'e:embedded',
+		\ 'f:functions',
+		\ 'm:methods',
+		\ 'r:constructor'
+	\ ],
+	\ 'sro' : '.',
+	\ 'kind2scope' : {
+		\ 't' : 'ctype',
+		\ 'n' : 'ntype'
+	\ },
+	\ 'scope2kind' : {
+		\ 'ctype' : 't',
+		\ 'ntype' : 'n'
+	\ },
+	\ 'ctagsbin'  : '/usr/bin/gotags',
+	\ 'ctagsargs' : '-sort -silent'
+\ }
+
+" end of tagbar  settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+let g:ctrlp_working_path_mode = 'ar'
+""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" for youcompleteme
+let g:loaded_youcompletme = 1
+""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
 " plug setting
 call plug#begin('~/.vim/plugged')
 
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/syntastic'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 Plug 'kien/ctrlp.vim'
 Plug 'Shougo/vimshell.vim'
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'Shougo/unite.vim'
 Plug 'bling/vim-airline'
 Plug 'scrooloose/nerdtree'
+Plug 'Lokaltog/vim-powerline'
+Plug 'tpope/vim-surround'
+Plug 'fholgado/minibufexpl.vim'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-commentary'
+Plug 'jiexu/Vim-Jinja2-Syntax'
+Plug 'vim-scripts/SyntaxRange'
+Plug 'elzr/vim-json'
+Plug 'tpope/vim-abolish'
+"Plug 'Valloric/YouCompleteMe'
 call plug#end()
